@@ -111,5 +111,3 @@ pageQuiz()
     
 #Page 4: Statistics on Fifa Players
 
-# test
-# test2
