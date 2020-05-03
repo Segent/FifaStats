@@ -237,5 +237,3 @@ print(df2.sort_values(by = 'player_count'))
 #wages for japanese Players
 df2 = fifa_japanese[['Name', 'Wage']]
 print(df2)
-
-#test2
