@@ -13,6 +13,9 @@ class Fifa:
 
 #Main Page
     def main_screen():
+        """
+        shows main screen and let users choose pages they want to see
+        """
         root= tk.Tk()
         root.title("")
         root.geometry("400x300")
