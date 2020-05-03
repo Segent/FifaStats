@@ -21,6 +21,18 @@ class Fifa:
         space= tk.Label(root, text="")
         space.pack()
         
+        channel= tk.Button(root, text= "Player Information", height="2", width="30", command="channel_surface")
+        channel.pack()
+
+        space1= tk.Label(root, text="")
+        space1.pack() 
+
+        statistic= tk.Button(root, text="FIFA 20 Quiz", height="2", width="30")
+        statistic.pack()    
+
+        space2= tk.Label(root, text="")
+        space2.pack() 
+
         bucketlist= tk.Button(root, text="Club Picker", height="2", width="30")
         bucketlist.pack()
         
