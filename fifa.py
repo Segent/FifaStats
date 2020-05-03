@@ -28,21 +28,27 @@ class Fifa:
         
         channel= tk.Button(root, text= "Player Information", height="2", width="30", command="channel_surface")
         channel.pack()
-        
+
         space1= tk.Label(root, text="")
         space1.pack() 
-        
+
         statistic= tk.Button(root, text="FIFA 20 Quiz", height="2", width="30")
         statistic.pack()    
-        
+
         space2= tk.Label(root, text="")
         space2.pack() 
-        
+
         bucketlist= tk.Button(root, text="Club Picker", height="2", width="30")
         bucketlist.pack()
         
         space3= tk.Label(root, text="")
         space3.pack() 
+
+        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30")
+        statistic.pack()    
+        
+        space2= tk.Label(root, text="")
+        space2.pack() 
         
         bucketlist= tk.Button(root, text="Statistics on Fifa Players", height="2", width="30")
         bucketlist.pack()
@@ -57,10 +63,10 @@ class Fifa:
 #creating a random selector channel 
 
 def random_select():
-    youtube = pd.read_csv('fifadata.csv')
-    youtube.dropna()
-    genre= youtube["Club"]
-    print(genre[random.randint(0,101)])
+    fifa = pd.read_csv('fifadata.csv')
+    fifa.dropna()
+    club= fifa["Club"]
+    print(club[random.randint(0,101)])
 random_select()
 
 def channel_surface():
@@ -112,18 +118,14 @@ def player_information():
 player_information()
 
 #Page 3: Fifa 20 Quiz
-#def top_20():
-    #fifa= pd.read_csv('fifadata.csv')
-    #top_100= fifa.sort_values('Value', ascending= False)
-    #top_100[:21]
-    #top_100["Name"]
 
 def pageQuiz():
     page_quiz= tk.Tk()
     page_quiz.title("")
-    page_quiz.geometry("400x300")
+    page_quiz.geometry("800x600")
     
-    title1= tk.Label(page_quiz, text="FIFA 20 QUIZ", bg="blue", width="300", height="2", font=("Calibri", 13))
+    title1= tk.Label(page_quiz, text="FIFA 20 QUIZ", bg="blue", width="300",
+                     height="2", font=("Calibri", 13))
     title1.pack()
 
     gap= tk.Label(page_quiz, text="")
@@ -131,11 +133,63 @@ def pageQuiz():
     
     name= tk.Label(page_quiz, text="Welcome to our Fifa 20 Quiz!")
     name.pack()
+    
+    name2= tk.Label(page_quiz, text="")
+    name2.pack()
+        
+    answer1= [("700", 1), ("500", 2), ("1,000", 3), ("100", 4), ("100", 5)]
+    
+    question1= tk.Label(page_quiz, text= "How many FIFA clubs are there?")
+    question1.pack()
+
+    for text, value in answer1:
+        b = tk.Radiobutton(page_quiz, text=text, value=value)
+        b.pack(anchor="w")
+        
+        if value == "700":
+            print("You're correct!")
+        else:
+            print("You're wrong")
+            
+    name3= tk.Label(page_quiz, text="")
+    name3.pack()
+            
+    answer2= [("Lionel Messi", 1), ("Cristiano Ronaldo", 2), ("Mohamed Salah", 3), ("Eden Hazard", 4)]
+    
+    question2= tk.Label(page_quiz, text= "Who is the FIFA World's Best Player in 2019?")
+    question2.pack()
+
+    for key, word in answer2:
+        a = tk.Radiobutton(page_quiz, text=key, value=word)
+        a.pack(anchor="w")
+        
+        if value == "Lionel Messi":
+            print("You're correct!")
+        else:
+            print("You're wrong")
+            
+    name4= tk.Label(page_quiz, text="")
+    name4.pack()
+    
+    answer3= [("Argentina", 1), ("Italy", 2), ("USA", 3), ("Brazil", 4)]
+    
+    question3= tk.Label(page_quiz, text= "Which country has won the most world cup wins?")
+    question3.pack()
+
+    for ab, cd in answer3:
+        c = tk.Radiobutton(page_quiz, text=ab, value=cd)
+        c.pack(anchor="w")
+        
+        if value == "Brazil":
+            print("You're correct!")
+        else:
+            print("You're wrong")
+            
+    submit_button= tk.Button (page_quiz, text= "Submit")
+    submit_button.pack()
 
     page_quiz.mainloop()
 pageQuiz()
-    
-#Page 4: Statistics on Fifa Players
 
 df = pd.read_csv("fifadata.csv")
 print(df)
