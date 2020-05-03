@@ -21,25 +21,19 @@ class Fifa(tk.Frame):
         space= tk.Label(root, text="")
         space.pack()
         
-        channel= tk.Button(root, text= "Player Information", height="2", width="30", command=self.channel_surface)
+        channel= tk.Button(root, text= "Player Information", height="2", width="30")
         channel.pack()
 
         space1= tk.Label(root, text="")
-        space1.pack() 
+        space1.pack()
 
-        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30")
-        statistic.pack()    
-
-        space2= tk.Label(root, text="")
-        space2.pack() 
-
-        bucketlist= tk.Button(root, text="Club Picker", height="2", width="30")
+        bucketlist= tk.Button(root, text="Club Picker", height="2", width="30", command= self.channel_surface)
         bucketlist.pack()
         
         space3= tk.Label(root, text="")
         space3.pack() 
 
-        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30")
+        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30", command= self.pagequiz)
         statistic.pack()    
         
         space2= tk.Label(root, text="")
@@ -50,10 +44,30 @@ class Fifa(tk.Frame):
         
         space4= tk.Label(root, text="")
         space4.pack() 
-        
-    # Page 1: Club Channel Picker
-    #creating a random selector channel 
+    
+    #Page 1: Player Information
+    # def player_information(self):
+    #     page= tk.Toplevel(self.root)
+    #     page.title("")
+    #     page.geometry("400x300")
 
+    #     title1= tk.Label(page, text="Player Information", bg="red", width="300", height="2", font=("Calibri", 13))
+    #     title1.pack()
+
+    #     gap= tk.Label(page, text="")
+    #     gap.pack()
+
+    #     name= tk.Label(page, text="Welcome to our Player Information Page!")
+    #     name.pack()
+
+    #     shuffle= tk.Button(page, text="Shuffle", command=random_select)
+    #     shuffle.pack()
+
+    #     gap1= tk.Label(page, text="")
+    #     gap1.pack()
+
+    # Page 2: Club Channel Picker
+    #creating a random selector channel 
     def random_select(self):
         fifa = pd.read_csv('fifadata.csv') #fix the file
         fifa.dropna()
@@ -89,13 +103,9 @@ class Fifa(tk.Frame):
         
         gap1= tk.Label(page, text="")
         gap1.pack()
-        
-
-    #Page 2: Player Information
 
 
     #Page 3: Fifa 20 Quiz
-
     def pagequiz(self):
         page_quiz= tk.Toplevel(self.root)
         page_quiz.title("")
@@ -166,7 +176,7 @@ class Fifa(tk.Frame):
         submit_button.pack()
 
 # class Stat:
-#     df = pd.read_csv("fifadata.csv") #fix this: sys argsv (add to command line)
+#     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
 #     print(df)
 
 #     #average_age of all players
