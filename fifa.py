@@ -1,9 +1,12 @@
+""" organizes Fifa players information, random generator of clubs in fifa, statistics on fifa players, quiz"""
+
 import tkinter as tk
 import os
 import random
 import pandas as pd
 import numpy as np
-""" organizes Fifa players information, random generator of clubs in fifa, statistics on fifa players, quiz"""
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Fifa(tk.Frame):
     def __init__(self, root):
@@ -69,7 +72,7 @@ class Fifa(tk.Frame):
         
         title1= tk.Label(page, text="Club Picker", bg="blue", width="300", height="2", font=("Calibri", 13))
         title1.pack()
-
+        
         gap= tk.Label(page, text="")
         gap.pack()
         
@@ -162,6 +165,53 @@ class Fifa(tk.Frame):
         submit_button= tk.Button (page_quiz, text= "Submit")
         submit_button.pack()
 
+# class Stat:
+#     df = pd.read_csv("fifadata.csv") #fix this: sys argsv (add to command line)
+#     print(df)
+
+#     #average_age of all players
+#     average_age = df.Age.mean()
+#     print(average_age)
+
+#     #average_age of players by nationality
+#     avg_age_Bynationality = df.groupby('Nationality').Age.mean()
+#     print(avg_age_Bynationality.sort_values())
+
+#     #convert the wages from string to integer value
+#     #For example 5k = 5000
+#     def convert_wage_to_int(wage_str):
+#         res = wage_str.replace('€', '').replace('K', '')
+#         res = int(res)*1000
+#         return res
+
+#     age_salary_df = df[['Age', 'Wage']].copy()
+
+#     #convert wage into numerical values
+#     for ind, val in enumerate(list(age_salary_df['Wage'])):
+#         age_salary_df.loc[ind, 'Wage'] = convert_wage_to_int(val)
+
+#     age_salary_df = age_salary_df.sort_values( by = 'Age')
+
+#     #Plot age with wage
+#     sns.regplot(x="Age", y="Wage", data=age_salary_df)
+#     plt.show()
+
+#     #Analysis on Japanese Players
+#     df2 = pd.DataFrame()
+#     fifa_japanese = df[(df['Nationality'] == "Japan")]
+#     fifa_japanese.sort_values(by = 'Age')
+
+#     #How many players in fifa rankings in each club
+#     club_count = fifa_japanese.groupby('Club')['Name']
+#     club = list(club_count.groups.keys())
+#     count = list(club_count.size())
+#     df2['club'] = club
+#     df2['player_count'] = count
+#     print(df2.sort_values(by = 'player_count'))
+
+#     #wages for japanese Players
+#     df2 = fifa_japanese[['Name', 'Wage']]
+#     print(df2)
 
 def main():
     root = tk.Tk()
@@ -171,6 +221,4 @@ def main():
     
 if __name__ == "__main__":
     main()
-    
-    
     
