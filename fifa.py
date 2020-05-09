@@ -44,61 +44,61 @@ class Fifa(tk.Frame):
         space4.pack() 
     
    # Page 1: Player Information
-    def player_select(self):
-         page= tk.Toplevel(self.root)
-         page.title("")
-         page.geometry("400x300")
+    #def player_select(self):
+      #   page= tk.Toplevel(self.root)
+        # page.title("")
+      #   page.geometry("400x300")
 
-         title1= tk.Label(page, text="Player Information", bg="red", width="300", height="2", font=("Calibri", 13))
-         title1.pack()
+        # title1= tk.Label(page, text="Player Information", bg="red", width="300", height="2", font=("Calibri", 13))
+        # title1.pack()
 
-         gap= tk.Label(page, text="")
-         gap.pack()
+       #  gap= tk.Label(page, text="")
+       #  gap.pack()
 
-         name= tk.Label(page, text="Welcome to our Player Information Page!")
-         name.pack()
+       #  name= tk.Label(page, text="Welcome to our Player Information Page!")
+        # name.pack()
 
-         shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
-         shuffle.pack()
+       #  shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
+       #  shuffle.pack()
 
-         gap1= tk.Label(page, text="")
-         gap1.pack()
+       #  gap1= tk.Label(page, text="")
+       #  gap1.pack()
         
-         fifa = pd.read_csv('fifadata.csv') 
-         fifa.dropna()
-         club= fifa["Name"]
-         rand= club[random.randint(0,101)]
-         return rand
+       #  fifa = pd.read_csv('fifadata.csv') 
+       #  fifa.dropna()
+       #  club= fifa["Name"]
+       #  rand= club[random.randint(0,101)]
+       #  return rand
         
     
-    def player_label(self):
-        val = self.player_select()
-        self.var.set(val)
+    #def player_label(self):
+        #val = self.player_select()
+       # self.var.set(val)
 
-    def player_surface(self):
-        page= tk.Toplevel(self.root)
-        page.title("")
-        page.geometry("400x300")
+    #def player_surface(self):
+       # page= tk.Toplevel(self.root)
+       # page.title("")
+       # page.geometry("400x300")
         
-        title1= tk.Label(page, text="PLAYER INFORMATION", bg="red", width="300", height="2", font=("Calibri", 13))
-        title1.pack()
+      #  title1= tk.Label(page, text="PLAYER INFORMATION", bg="red", width="300", height="2", font=("Calibri", 13))
+        #title1.pack()
         
-        gap= tk.Label(page, text="")
-        gap.pack()
+        #gap= tk.Label(page, text="")
+       # gap.pack()
         
-        name= tk.Label(page, text="Welcome to our Player Information!")
-        name.pack()
+        #name= tk.Label(page, text="Welcome to our Player Information!")
+        #name.pack()
         
-        self.var= tk.StringVar()
+        #self.var= tk.StringVar()
         
-        text_shuffle= tk.Label(page, textvariable= self.var)
-        text_shuffle.pack()
+       # text_shuffle= tk.Label(page, textvariable= self.var)
+        #text_shuffle.pack()
         
-        shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
-        shuffle.pack()
+       # shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
+       # shuffle.pack()
         
-        gap1= tk.Label(page, text="")
-        gap1.pack()
+       # gap1= tk.Label(page, text="")
+       # gap1.pack()
 
     # Page 2: Club Channel Picker
     #creating a random selector channel 
@@ -140,8 +140,56 @@ class Fifa(tk.Frame):
 
 
     #Page 3: Fifa Quiz
+    def quiz(self, window):
+        window= tk.Toplevel(self.root)
+        window.title("")
+        window.geometry("800x600")
 
-    
+        welcome_title= tk.Label(window, text="Club Picker", bg="blue", width="300", height="2", font=("Calibri", 13))
+        welcome_title.pack()
+
+        gap1= tk.Label("")
+        gap1.pack()
+
+        question1= tk.Label(window, text= "1.) How many FIFA clubs are there?\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
+        question1.pack()
+
+        question1_entry= tk.Entry(window)
+        question1_entry.pack()
+
+        question2= tk.Label(window, text= "2.) Who is the FIFA World's Best Player in 2019?\n(a) Cristiano Ronaldo\n(b)Mohamed Salah\n(c)Eden Hazard\n(d)Lionel Messi\n")
+        question2.pack()
+
+        question2_entry= tk.Entry(window)
+        question2_entry.pack()
+
+        question3= tk.Label(window, text= "Which country has won the most world cup wins?\n(a) Argentina\n(b)Italy\n(c)USA\n(d)Brazil\n")
+        question3.pack()
+
+        question3_entry= tk.Entry(window)
+        question3_entry.pack()
+
+        submit= tk.Button(window, text= "Submit", command= self.total_score)
+        submit.pack()
+        
+        self.var= tk.StringVar()
+        
+    def total_score(self, answer, question, question1, question2, question3):
+        self.quiz(self, window)
+        score = 0
+        for answer in question:
+            if input(self.question1) == "a" or "A":
+                print("Number 1 is correct!")
+                score += 1
+            elif input(self.question2) == "d" or "D":
+                print("Number 2 is correct!")
+                score += 1
+            elif input(self.question3) == "d" or "D":
+                print("Number 3 is correct!")
+                score += 1
+        print("Nice try, you have gotten " + int(score) + "/3 correct!")
+        
+        
 # class Stat:
 #     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
 #     print(df)
