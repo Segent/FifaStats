@@ -43,26 +43,62 @@ class Fifa(tk.Frame):
         space4= tk.Label(root, text="")
         space4.pack() 
     
-    #Page 1: Player Information
-    # def player_information(self):
-    #     page= tk.Toplevel(self.root)
-    #     page.title("")
-    #     page.geometry("400x300")
+   # Page 1: Player Information
+    def player_select(self):
+         page= tk.Toplevel(self.root)
+         page.title("")
+         page.geometry("400x300")
 
-    #     title1= tk.Label(page, text="Player Information", bg="red", width="300", height="2", font=("Calibri", 13))
-    #     title1.pack()
+         title1= tk.Label(page, text="Player Information", bg="red", width="300", height="2", font=("Calibri", 13))
+         title1.pack()
 
-    #     gap= tk.Label(page, text="")
-    #     gap.pack()
+         gap= tk.Label(page, text="")
+         gap.pack()
 
-    #     name= tk.Label(page, text="Welcome to our Player Information Page!")
-    #     name.pack()
+         name= tk.Label(page, text="Welcome to our Player Information Page!")
+         name.pack()
 
-    #     shuffle= tk.Button(page, text="Shuffle", command=random_select)
-    #     shuffle.pack()
+         shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
+         shuffle.pack()
 
-    #     gap1= tk.Label(page, text="")
-    #     gap1.pack()
+         gap1= tk.Label(page, text="")
+         gap1.pack()
+        
+         fifa = pd.read_csv('fifadata.csv') 
+         fifa.dropna()
+         club= fifa["Name"]
+         rand= club[random.randint(0,101)]
+         return rand
+        
+    
+    def player_label(self):
+        val = self.player_select()
+        self.var.set(val)
+
+    def player_surface(self):
+        page= tk.Toplevel(self.root)
+        page.title("")
+        page.geometry("400x300")
+        
+        title1= tk.Label(page, text="PLAYER INFORMATION", bg="red", width="300", height="2", font=("Calibri", 13))
+        title1.pack()
+        
+        gap= tk.Label(page, text="")
+        gap.pack()
+        
+        name= tk.Label(page, text="Welcome to our Player Information!")
+        name.pack()
+        
+        self.var= tk.StringVar()
+        
+        text_shuffle= tk.Label(page, textvariable= self.var)
+        text_shuffle.pack()
+        
+        shuffle= tk.Button(page, text="Shuffle", command=self.player_label)
+        shuffle.pack()
+        
+        gap1= tk.Label(page, text="")
+        gap1.pack()
 
     # Page 2: Club Channel Picker
     #creating a random selector channel 
