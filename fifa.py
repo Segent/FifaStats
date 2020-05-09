@@ -140,24 +140,7 @@ class Fifa(tk.Frame):
 
 
     #Page 3: Fifa Quiz
-    
-    def quiz(self, window):
-        window= tk.Tk()
-        window.title("")
-        window.geometry("800x600")
-        
-        welcome_title= tk.Label(window, text="Club Picker", bg="blue", width="300", height="2", font=("Calibri", 13))
-        welcome_title.pack()
-        
-        gap1= tk.Label("")
-        gap1.pack()
-        
-        question1= tk.Label(page_quiz, text= "1.) How many FIFA clubs are there?\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
-        question1.pack()
-        
-        question1_entry= tk.Entry(window)
-        question1_entry.pack()
-    
+
     
 # class Stat:
 #     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
