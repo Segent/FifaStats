@@ -5,8 +5,6 @@ import os
 import random
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 class Fifa(tk.Frame):
     def __init__(self, root):
@@ -33,7 +31,7 @@ class Fifa(tk.Frame):
         space3= tk.Label(root, text="")
         space3.pack() 
 
-        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30", command= self.pagequiz)
+        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30", command= self.quiz)
         statistic.pack()    
         
         space2= tk.Label(root, text="")
@@ -105,76 +103,26 @@ class Fifa(tk.Frame):
         gap1.pack()
 
 
-    #Page 3: Fifa 20 Quiz
-    def pagequiz(self):
-        page_quiz= tk.Toplevel(self.root)
-        page_quiz.title("")
-        page_quiz.geometry("800x600")
+    #Page 3: Fifa Quiz
+    
+    def quiz(self, window):
+        window= tk.Tk()
+        window.title("")
+        window.geometry("800x600")
         
-        title1= tk.Label(page_quiz, text="FIFA 20 QUIZ", bg="blue", width="300",
-                        height="2", font=("Calibri", 13))
-        title1.pack()
-
-        gap= tk.Label(page_quiz, text="")
-        gap.pack()
+        welcome_title= tk.Label(window, text="Club Picker", bg="blue", width="300", height="2", font=("Calibri", 13))
+        welcome_title.pack()
         
-        name= tk.Label(page_quiz, text="Welcome to our Fifa 20 Quiz!")
-        name.pack()
+        gap1= tk.Label("")
+        gap1.pack()
         
-        name2= tk.Label(page_quiz, text="")
-        name2.pack()
-            
-        answer1= [("700", 1), ("500", 2), ("1,000", 3), ("100", 4), ("100", 5)]
-        
-        question1= tk.Label(page_quiz, text= "How many FIFA clubs are there?")
+        question1= tk.Label(page_quiz, text= "1.) How many FIFA clubs are there?\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
         question1.pack()
-
-        for text, value in answer1: #fix later
-            b = tk.Radiobutton(page_quiz, text=text, value=value)
-            b.pack(anchor="w")
-            
-            if value == "700":
-                print("You're correct!")
-            else:
-                print("You're wrong")
-                
-        name3= tk.Label(page_quiz, text="")
-        name3.pack()
-                
-        answer2= [("Lionel Messi", 1), ("Cristiano Ronaldo", 2), ("Mohamed Salah", 3), ("Eden Hazard", 4)]
         
-        question2= tk.Label(page_quiz, text= "Who is the FIFA World's Best Player in 2019?")
-        question2.pack()
-
-        for key, word in answer2:
-            a = tk.Radiobutton(page_quiz, text=key, value=word)
-            a.pack(anchor="w")
-            
-            if value == "Lionel Messi":
-                print("You're correct!")
-            else:
-                print("You're wrong")
-                
-        name4= tk.Label(page_quiz, text="")
-        name4.pack()
-        
-        answer3= [("Argentina", 1), ("Italy", 2), ("USA", 3), ("Brazil", 4)]
-        
-        question3= tk.Label(page_quiz, text= "Which country has won the most world cup wins?")
-        question3.pack()
-
-        for ab, cd in answer3:
-            c = tk.Radiobutton(page_quiz, text=ab, value=cd)
-            c.pack(anchor="w")
-            
-            if value == "Brazil":
-                print("You're correct!")
-            else:
-                print("You're wrong")
-                
-        submit_button= tk.Button (page_quiz, text= "Submit")
-        submit_button.pack()
-
+        question1_entry= tk.Entry(window)
+        question1_entry.pack()
+    
+    
 # class Stat:
 #     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
 #     print(df)
@@ -228,7 +176,7 @@ def main():
     f= Fifa(root)
     f.pack()
     root.mainloop()
-    
+
 if __name__ == "__main__":
     main()
     
