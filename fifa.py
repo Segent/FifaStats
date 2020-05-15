@@ -37,8 +37,8 @@ class Fifa(tk.Frame):
         space2= tk.Label(root, text="")
         space2.pack() 
         
-        bucketlist= tk.Button(root, text="Statistics on Fifa Players", height="2", width="30")
-        bucketlist.pack()
+        analysis_channel= tk.Button(root, text="Statistics on Fifa Players", height="2", width="30", command=self.analysis_page)
+        analysis_channel.pack()
         
         space4= tk.Label(root, text="")
         space4.pack() 
@@ -189,8 +189,23 @@ class Fifa(tk.Frame):
                 score += 1
         print("Nice try, you have gotten " + int(score) + "/3 correct!")
         
-        
-# class Stat:
+    def analysis_page(self) 
+        root = tk.Tk()
+
+        title= tk.Label(root)
+        title.pack()
+
+        btnl= tk.Button(root, text= "Fifa Player Analysis", height="2", width="30", command=avg_age(df))
+        btnl.pack()
+
+        btn2= tk.Button(root, text= "Average Age of Players by Nationality", height="2", width="30", command=avg_age_by_nationality(df))
+        btn2.pack()
+
+        btn3= tk.Button(root, text= "Wage by age plot", height="2", width="30", command=plot_display(age_salary_df))
+        btn3.pack()
+
+        btn4= tk.Button(root, text= "Japanese players and thier clubs in Fifa ranking", height="2", width="30", command=japanese_player_analysis(df))
+        btn4.pack()
 #     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
 #     print(df)
 
