@@ -1,3 +1,4 @@
+#%%
 """ organizes Fifa players information, random generator of clubs in fifa, statistics on fifa players, quiz"""
 
 import tkinter as tk
@@ -5,16 +6,17 @@ import os
 import random
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 class Fifa(tk.Frame):
     def __init__(self, root):
         self.root= root
         super().__init__(root)
         root.title("")
-        root.geometry("400x300")
+        root.geometry("400x360")
         
-        title= tk.Label(root, text="FIFA 2019 PLAYERS", bg="red", width="300", height="2", font=("Calibri", 13))
+        title= tk.Label(root, text="FIFA 2019 PLAYERS", bg="red", width="300",
+                        height="2", font=("Calibri", 13))
         title.pack()
         
         space= tk.Label(root, text="")
@@ -34,22 +36,31 @@ class Fifa(tk.Frame):
         space3= tk.Label(root, text="")
         space3.pack() 
 
-        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30", command= self.quiz)
+        statistic= tk.Button(root, text="FIFA Quiz", height="2", width="30",
+                             command= self.quiz)
         statistic.pack()    
         
         space2= tk.Label(root, text="")
         space2.pack() 
         
         bucketlist= tk.Button(root, text="Statistics on Fifa Players",
-                              height="2", width="30")
+                              height="2", width="30",
+                              command=self.graph_display)
         bucketlist.pack()
         
         space4= tk.Label(root, text="")
         space4.pack() 
         
+        graph= tk.Button(root, text= "FIFA Anaylsis", height="2", width="30")
+        graph.pack()
+        
+        space5= tk.Label(root, text="")
+        space5.pack() 
+        
         self.question1_entry= tk.StringVar()
         self.question2_entry= tk.StringVar()
         self.question3_entry= tk.StringVar()
+    
     
    # Page 1: Player Information
     #def player_select(self):
@@ -111,10 +122,10 @@ class Fifa(tk.Frame):
     # Page 2: Club Channel Picker
     #creating a random selector channel 
     def random_select(self):
-        fifa = pd.read_csv('fifadata.csv') #fix the file
+        fifa = pd.read_csv('fifadata.csv') 
         fifa.dropna()
         club= fifa["Club"]
-        rand= club[random.randint(0,101)]
+        rand= club[random.randint(0,501)]
         return rand
     
     def random_label(self):
@@ -148,67 +159,182 @@ class Fifa(tk.Frame):
         gap1.pack()
     
     #Page 3: FIFA Quiz 
-    def quiz_label(self):
-        lbl = self.score()
-        self.var.set(lbl)
+    def score_label(self):
+        val = self.score()
+        self.var.set(val)
     
     def quiz(self):
         window= tk.Toplevel(self.root)
         window.title("")
         window.geometry("800x600")
         
-        welcome_title= tk.Label(window, text="FIFA Quiz", bg="blue", width="300", height="2", font=("Calibri", 13))
+        welcome_title= tk.Label(window, text="FIFA Quiz", bg="blue",
+                                width="300", height="2", font=("Calibri", 13))
         welcome_title.pack()
 
         gap1= tk.Label("")
         gap1.pack()
 
-        question1= tk.Label(window, text= "1.) How many FIFA clubs are there?\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
+        question1= tk.Label(window, text= "1.) How many FIFA clubs are there?"
+                            "\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
         question1.pack()
 
         question1_entry= tk.Entry(window, textvariable= self.question1_entry)
         question1_entry.pack()
 
-        question2= tk.Label(window, text= "2.) Who is the FIFA World's Best Player in 2019?\n(a) Cristiano Ronaldo\n(b)Mohamed Salah\n(c)Eden Hazard\n(d)Lionel Messi\n")
+        question2= tk.Label(window, text= "2.) Who is the FIFA World's Best"
+                            "Player in 2019?\n(a) Cristiano Ronaldo\n"
+                            "(b)Mohamed Salah\n(c)Eden Hazard\n(d)Lionel Messi"
+                            "\n")
         question2.pack()
 
         question2_entry= tk.Entry(window, textvariable= self.question2_entry)
         question2_entry.pack()
 
-        question3= tk.Label(window, text= "Which country has won the most world cup wins?\n(a) Argentina\n(b)Italy\n(c)USA\n(d)Brazil\n")
+        question3= tk.Label(window, text= "Which country has won the most world"
+                            "cup wins?\n(a) Argentina\n(b)Italy\n(c)USA"
+                            "\n(d)Brazil\n")
         question3.pack()
 
         question3_entry= tk.Entry(window, textvariable= self.question3_entry)
         question3_entry.pack()
 
-        submit= tk.Button(window, text= "Submit", command= self.score)
+        submit= tk.Button(window, text= "Submit", command= self.score_label)
         submit.pack()
         
         self.var= tk.StringVar()
+        
+        printed_score= tk.Label(window, textvariable= self.var)
+        printed_score.pack()
         
     def score(self):
         question1_entry= self.question1_entry.get()
         question2_entry= self.question2_entry.get()
         question3_entry= self.question3_entry.get()
-        score = 0
+        score= 0
+        score= int(score)
         if question1_entry == "a" or question1_entry == "A":
-            print("Number 1: correct!")
+            return("Number 1: correct!")
             score += 1
         else:
-            print("Number 1:incorrect")
+            return("Number 1:incorrect")
+        
         if question2_entry == "d" or question2_entry == "D":
-            print("Number 2: correct!")
+            return("Number 2: correct!")
             score += 1
         else:
-            print("Number 2:incorrect")
+            return("Number 2:incorrect")
+        
         if question3_entry == "d" or question3_entry == "D":
-            print("Number 3: correct!")
+            return("Number 3: correct!")
             score += 1
         else:
-            print("Number 3:incorrect")
-        print("Score: " + str(score) + "/3")
-        return (score)
+            return("Number 3:incorrect")
+        
+        return("Score: " + str(score) + "/3")
+    
+    def histgraph(self):
+        df= pd.read_csv("fifadata.csv")
+        df.dropna()
+        bins= [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
+        plt.hist(df.Overall, bins=bins, color= "#6d32a8")
+        
+        plt.xticks(bins)
+        plt.ylabel("Number of FIFA players in 2019")
+        plt.xlabel("Overall Skill Level")        
+        plt.title("FIFA Players Overall Skills in 2019")
+        
+        plt.show()
+        
+    def piegraph(self):
+        #Obtain data from the particular facility user inputted
+        df= pd.read_csv("fifadata.csv")
+        df.dropna() 
+        level = df["Preferred Foot"].value_counts()
+        labels = ('Right', 'Left')
+        colors = ['lightskyblue', 'red']
 
+        #Display a pie chart for the facility security level
+        plt.title("What is a fifa player's prefered foot: left or right?")
+        plt.pie(level, labels=labels, colors=colors, autopct='%1.0f%%')
+        plt.show()
+        
+    def scattgraph(self):
+        df= pd.read_csv("fifadata.csv")
+        df.dropna()
+        y= df["ID"]
+        z= df["Value"]
+
+        plt.scatter(y, z, edgecolor="black", linewidth=1, alpha=.75)
+
+        plt.xscale("log")
+        plt.yscale("log")
+
+        plt.title("FIFA players")
+        plt.xlabel("Number of FIFA players in 2019")
+        plt.ylabel("Total Market Value of the FIFA player in 2019")   
+        plt.show()
+        
+    def topclub(self):
+        df= pd.read_csv("fifadata.csv")
+        df.dropna()
+        a= df.sort_values(by='Club', ascending= False)
+        a= df["Club"].value_counts()
+        return (a[:31])
+        
+    def top_label(self):
+        val = self.topclub()
+        self.var.set(val)
+        
+    def topclub_display(self):
+        top_page= tk.Toplevel(self.root)
+        top_page.title("")
+        top_page.geometry("800x600")
+        click_me= tk.Button(top_page, text= "CLICK ME!", command=self.top_label)
+        click_me.pack()
+        self.var= tk.StringVar()
+        
+        text_top= tk.Label(top_page, textvariable= self.var)
+        
+        text_top.pack()
+        
+    def graph_display(self):
+        graph_page= tk.Toplevel(self.root)
+        graph_page.title("")
+        graph_page.geometry("400x300")
+        
+        title= tk.Label(graph_page, text="Statistics on Fifa Players",
+                        bg="blue", width="300",
+                        height="2", font=("Calibri", 13))
+        title.pack()
+        
+        gap= tk.Label(graph_page, text="")
+        gap.pack()
+        
+        name= tk.Label(graph_page, text="Welcome to our Statistic on FIFA 2019"
+                       "players!")
+        name.pack()
+        
+        name1= tk.Label(graph_page, text= "Select any button to explore"
+                        " different aspect of the data!")
+        name1.pack()
+        
+        button1= tk.Button(graph_page, text= "FIFA Players Overall Score",
+                           command=self.histgraph)
+        button1.pack()
+        
+        button2= tk.Button(graph_page, text= "FIFA Players Prefered Foot: Left"
+                           " or Right", command= self.piegraph)
+        button2.pack()
+        
+        button3= tk.Button(graph_page, text= "Market Value of the FIFA Players",
+                           command=self.scattgraph)
+        button3.pack()
+
+        button4= tk.Button(graph_page, text= "Top 30 clubs that have the most"
+                           " FIFA players in 2019",
+                           command=self.topclub_display)
+        button4.pack()
     
 # class Stat:
 #     df = pd.read_csv("fifadata.csv")  #fix this: sys argsv (add to command line)
@@ -267,3 +393,5 @@ def main():
 if __name__ == "__main__":
     main()
     
+
+# %%
