@@ -22,15 +22,13 @@ class Fifa(tk.Frame):
         space= tk.Label(root, text="")
         space.pack()
         
-        channel= tk.Button(root, text= "Player Information", height="2",
-                           width="30")
+        channel= tk.Button(root, text= "Player Information", height="2", width="30")
         channel.pack()
 
         space1= tk.Label(root, text="")
         space1.pack()
 
-        bucketlist= tk.Button(root, text="Club Picker", height="2", width="30",
-                              command= self.channel_surface)
+        bucketlist= tk.Button(root, text="Club Picker", height="2", width="30", command= self.channel_surface)
         bucketlist.pack()
         
         space3= tk.Label(root, text="")
@@ -137,8 +135,7 @@ class Fifa(tk.Frame):
         page.title("")
         page.geometry("400x300")
         
-        title1= tk.Label(page, text="Club Picker", bg="blue", width="300",
-                         height="2", font=("Calibri", 13))
+        title1= tk.Label(page, text="Club Picker", bg="blue", width="300", height="2", font=("Calibri", 13))
         title1.pack()
         
         gap= tk.Label(page, text="")
@@ -179,7 +176,7 @@ class Fifa(tk.Frame):
                             "\n(a)700\n(b)500\n(c)1,000\n(d)100\n")
         question1.pack()
 
-        question1_entry= tk.Entry(window, textvariable= self.question1_entry)
+        question1_entry= tk.Entry(window)
         question1_entry.pack()
 
         question2= tk.Label(window, text= "2.) Who is the FIFA World's Best"
@@ -188,7 +185,7 @@ class Fifa(tk.Frame):
                             "\n")
         question2.pack()
 
-        question2_entry= tk.Entry(window, textvariable= self.question2_entry)
+        question2_entry= tk.Entry(window)
         question2_entry.pack()
 
         question3= tk.Label(window, text= "Which country has won the most world"
@@ -196,7 +193,7 @@ class Fifa(tk.Frame):
                             "\n(d)Brazil\n")
         question3.pack()
 
-        question3_entry= tk.Entry(window, textvariable= self.question3_entry)
+        question3_entry= tk.Entry(window)
         question3_entry.pack()
 
         submit= tk.Button(window, text= "Submit", command= self.score_label)
@@ -389,6 +386,7 @@ def main():
     f= Fifa(root)
     f.pack()
     root.mainloop()
+    analysis_page()
 
 if __name__ == "__main__":
     main()
