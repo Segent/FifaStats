@@ -64,7 +64,9 @@ class Fifa(tk.Frame):
     
     
    # Page 1: Player Information
-    #def player_select(self):
+    def player_select(self):
+        self.players = []
+        self.packs = []
       #   page= tk.Toplevel(self.root)
         # page.title("")
       #   page.geometry("400x300")
@@ -91,7 +93,13 @@ class Fifa(tk.Frame):
        #  return rand
         
     
-    #def player_label(self):
+    def player_label(self):
+         players["information"]["name"] = player_select("Please enter a player's name" + str(profile + 1) + ": ")
+        print("Enter six(6) items to fill your pack with: ")
+        for item in range(6):
+            packs_item = player_selection("Item name: ")
+            players[information]["packs"].append(packs_item)
+        print (players[information]["packs"])
         #val = self.player_select()
        # self.var.set(val)
 
