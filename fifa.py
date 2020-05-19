@@ -24,7 +24,7 @@ class Fifa(tk.Frame):
         space.pack()
         
         channel= tk.Button(root, text= "Player Information", height="2",
-                           width="30")
+                           width="30", command= self.player_surface)
         channel.pack()
 
         space1= tk.Label(root, text="")
@@ -58,11 +58,6 @@ class Fifa(tk.Frame):
         
         space5= tk.Label(root, text="")
         space5.pack() 
-        
-        self.question1_entry= tk.StringVar()
-        self.question2_entry= tk.StringVar()
-        self.question3_entry= tk.StringVar()
-    
     
    # Page 1: Player Information
     def player_select(self):
@@ -108,7 +103,7 @@ class Fifa(tk.Frame):
         val = self.player_select()
         self.var.set(val)
 
-    #def player_surface(self):
+    def player_surface(self):
         page= tk.Toplevel(self.root)
         page.title("")
         page.geometry("400x300")
@@ -218,36 +213,13 @@ class Fifa(tk.Frame):
         question3_entry= tk.Entry(window)
         question3_entry.pack()
 
-        submit= tk.Button(window, text= "Submit", command= self.score)
+        submit= tk.Button(window, text= "Submit", command= self.answer)
         submit.pack()
         
-    def score(self):
-        """ Grade Quiz based on users input for FIFA Quiz
-
-            Returns:
-                string: gives the total score of the quiz
-        """
-        question1_entry= self.question1_entry.get()
-        question2_entry= self.question2_entry.get()
-        question3_entry= self.question3_entry.get()
-        score= 0
-        if question1_entry == "a" or question1_entry == "A":
-            print("Number 1: correct!")
-            score += 1
-        else:
-            print("Number 1:incorrect")
-        if question2_entry == "d" or question2_entry == "D":
-            print("Number 2: correct!")
-            score += 1
-        else:
-            print("Number 2:incorrect")
-        if question3_entry == "d" or question3_entry == "D":
-            print("Number 3: correct!")
-            score += 1
-        else:
-            print("Number 3:incorrect")
-        print("Score: " + str(score) + "/3")
-        return (score)
+    def answer(self):
+        """ prints answer sheet of the correct answers for the FIFA Quiz"""
+        print("Correct Answers: ")
+        print("\n1.) A\n2.) D\n3.) D\n")
     
     def histgraph(self):
         """ Histogram on Overall Score of FIFA players"""
@@ -273,23 +245,6 @@ class Fifa(tk.Frame):
 
         plt.title("What is a fifa player's prefered foot: left or right?")
         plt.pie(level, labels=labels, colors=colors, autopct='%1.0f%%')
-        plt.show()
-        
-    def scattgraph(self):
-        """ Scatter plot of FIFA players Market Value"""
-        df= pd.read_csv("fifadata.csv")
-        df.dropna()
-        y= df["ID"]
-        z= df["Value"]
-
-        plt.scatter(y, z, edgecolor="black", linewidth=1, alpha=.75)
-
-        plt.xscale("log")
-        plt.yscale("log")
-
-        plt.title("FIFA Players Market Value")
-        plt.xlabel("Number of FIFA players in 2019")
-        plt.ylabel("Total Market Value of the FIFA player in 2019")   
         plt.show()
         
     def topclub(self):
@@ -361,10 +316,6 @@ class Fifa(tk.Frame):
         button2= tk.Button(graph_page, text= "FIFA Players Prefered Foot: Left"
                            " or Right", command= self.piegraph)
         button2.pack()
-        
-        button3= tk.Button(graph_page, text= "Market Value of the FIFA Players",
-                           command=self.scattgraph)
-        button3.pack()
 
         button4= tk.Button(graph_page, text= "Top 30 clubs that have the most"
                            " FIFA players in 2019",
